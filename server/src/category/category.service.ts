@@ -1,5 +1,9 @@
 import { Category } from 'src/category/entities/category.entity';
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Repository } from 'typeorm';
@@ -9,7 +13,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class CategoryService {
   constructor(
     @InjectRepository(Category)
-    private readonly categotyRepository: Repository<Category>) {}
+    private readonly categotyRepository: Repository<Category>,
+  ) {}
   async create(createCategoryDto: CreateCategoryDto, id: number) {
     const isExist = await this.categotyRepository.findBy({
       user: { id },
